@@ -1,6 +1,5 @@
 +++
 date = "2016-06-10T23:50:30+05:00"
-draft = true
 title = "Greeting"
 tags = [ "Greeting", "First post" ]
 +++
