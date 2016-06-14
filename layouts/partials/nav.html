@@ -1,0 +1,32 @@
+<div id="navbar" {{ if eq $.IsHome false }} class="shrink no-expand" {{ end }} >
+    <div class="container">
+        <button type="button" class="navbar-toggle" id="nav-toggle">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <ul class="nav collapse" id="nav">
+            <li>
+                <a href="/post/" class="nav-link">
+                    Блог
+                </a>
+            </li>
+            <li>
+                <a href="#pricing" class="nav-link index-link">
+                    Цены
+                </a>
+            </li>
+            <li>
+                <a href="#contacts" class="nav-link index-link">
+                    Контакты
+                </a>
+            </li>
+        </ul>
+        <div class="logo">
+            <a href="index.html" class="nav-link">
+                Check in
+            </a>
+            <img src="/img/logo-check.svg" alt="logo"/>
+        </div>
+    </div>
+</div>

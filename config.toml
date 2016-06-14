@@ -1,0 +1,8 @@
+baseurl = "http://replace-this-with-your-hugo-site.com/"
+languageCode = "en-us"
+title = "CheckInTmn - фотопрогулки в Тюмени"
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+series = "series"

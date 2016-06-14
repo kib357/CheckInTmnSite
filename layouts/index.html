@@ -1,0 +1,137 @@
+{{ partial "header.html" . }}
+
+    <section id="top">
+        <!--<img class="logo" alt="logo-full" src="/img/logo-full.svg"></logo>-->
+        <div class="top-content">
+            <div class="logo">
+                {{ partial "logo.html" . }}
+            </div>
+            <h1>фотопрогрулки по Тюмени</h1>
+        </div>
+    </section>
+
+    <section id="main">
+        <div>
+            <h2 class="header">Маленькие истории большого города с авторскими иллюстрациями</h2>
+            <p>Фотопрогулка  – это ваша обычная прогулка, только к этому увлекательному процессу присоединяется фотограф.</p>
+            <p>Гулять можем в любой интересной точке города: Гилёвской роще, городской набережной, Цветном бульваре,
+                парке имени Юрия Гагарина, Аллее молодожёнов...</p>
+            <p>В общем, шикарных мест для фото в нашем городе предостаточно – выбирайте! </p>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div>
+            <h2 class="header">Портфолио</h2>
+
+        </div>
+    </section>
+
+    <section id="how">
+        <div>
+            <h2 class="header">Как устроить прогулку с фотографом?</h2>
+            <p>Иллюстрация порядка заказа, оплаты, проведения съемки и получения фото.</p>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div>
+            <h2 class="header">Заказать фотопрогулку</h2>
+            <div class="cards-list">
+                <div class="item card">
+                    <div class="head">
+                        <div class="back">
+                            <img src="/img/pricing-lite.png"/>
+                        </div>
+                        <div class="desc">
+                            Короткая фотосессия в любой точке Тюмени на ваш выбор. Идеально подойдёт тем, у кого на счету каждая минута. Фотосъёмка в парке рядом с работой во время обеденного перерыва или по пути на встречу – легко!
+                        </div>
+                        <div class="title">
+                            <h3>Light</h3>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="feature">до 30 минут</p>
+                        <span>продолжительность съемки</span>
+                        <p class="feature">15</p>
+                        <span>фото после обработки</span>
+                    </div>
+                    <div class="price">
+                        <span>
+						    Заказать за 1&nbsp;000&nbsp;&#8381;
+				        </span>
+                    </div>
+                </div>
+                <div class="item card">
+                    <div class="head">
+                        <div class="back">
+                            <img src="/img/pricing-standard.png"/>
+                        </div>
+                        <div class="desc">
+                            Фотопрогулка по Тюмени в любой части города по вашему желанию. Идеально подходит для съёмки Love-story и портфолио.
+                        </div>
+                        <div class="title">
+                            <h3>Standard</h3>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="feature">30–50 минут</p>
+                        <span>продолжительность съемки</span>
+                        <p class="feature">35</p>
+                        <span>фото после обработки</span>
+                    </div>
+                    <div class="price">
+                        <span>
+						    Заказать за 2&nbsp;000&nbsp;&#8381;
+				        </span>
+                    </div>
+                </div>
+                <div class="item card">
+                    <div class="head">
+                        <div class="back">
+                            <img src="/img/pricing-full.png"/>
+                        </div>
+                        <div class="desc">
+                            Длительная фотопрогулка по Тюмени в любой части города. По вашему желанию в формате полной прогулки возможно использование дополнительного реквизита, в зависимости от темы фотосъёмки.
+                        </div>
+                        <div class="title">
+                            <h3>Full</h3>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="feature">50–80 минут</p>
+                        <span>продолжительность съемки</span>
+                        <p class="feature">55</p>
+                        <span>фото после обработки</span>
+                    </div>
+                    <div class="price">
+                        <span>
+						    Заказать за 3&nbsp;000&nbsp;&#8381;
+				        </span>
+                    </div>
+                </div>
+            </div>
+            <p>Бонус к каждой прогулке: интервью с хорошим человеком на стене Check in TMN)</p>
+        </div>
+    </section>
+
+    <section id="blog-recent">
+        <div>
+            <h2 class="header">Новое в блоге</h2>
+            {{ range first 3 .Data.Pages }}
+            <div class="post post-preview">
+                <div class="summary">
+                    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                    {{ partial "tags.html" . }}
+                    <div class="content">
+                    {{ .Summary }}
+                    </div>
+                </div>
+                {{ if .Truncated }}
+                    <a class="read-more-link" href="{{ .RelPermalink }}">Читать дальше →</a>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </section>
+{{ partial "footer.html" . }}

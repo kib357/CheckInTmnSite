@@ -1,0 +1,114 @@
+@import './prefixes.less';
+@import './variables.less';
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  .transition(background-color .3s linear);
+
+  a.nav-link {
+    color: @nav-color;
+    line-height: @nav-height;
+    .transition(line-height .3s cubic-bezier(0.65, 0.05, 0.36, 1));
+  }
+
+  &.shrink {
+    background-color: @nav-background;
+    a.nav-link {
+      color: @nav-color-shrink;
+      line-height: @nav-height-shrink;
+    }
+    .logo a {
+      margin-left: 0;
+      opacity: 1;
+    }
+  }
+
+  .logo {
+    @media (max-width: 991px) {
+      float: right;
+    }
+    a {
+      font-size: 16px;
+      letter-spacing: 3px;
+      text-decoration: none;
+      text-transform: uppercase;
+      margin-left: -107px;
+      opacity: 0;
+      .transition(all .3s linear);
+    }
+    img {
+      width: 24px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+  }
+
+  ul.nav {
+    float: right;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    @media (max-width: 991px) {
+      // position: fixed;
+      // top: @nav-height;
+      // left: 0;
+      // bottom: 0;
+      // background: @nav-background;
+      // li {
+      //   display: block !important;
+      // }
+    }
+
+    li {
+      display: inline-block;
+      a {
+        display: inline-block;
+        padding: 0 14px;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-decoration: none;
+        outline: none;
+        &.nav-image-link {
+          padding: 0 15px;
+          font-size: 45px;
+          img {
+            height: 35px;
+          }
+        }
+        &.active {
+          .box-shadow(inset 0 -4px 0 #009688);
+        }
+      }
+    }
+  }
+
+  .navbar-toggle {
+    position: relative;
+    margin-left: 15px;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    background: transparent none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    @media (min-width: 992px) {
+      display: none;
+    }
+    .icon-bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+      background-color: #fff;
+    }
+    .icon-bar + .icon-bar {
+      margin-top: 4px;
+    }
+  }
+}
