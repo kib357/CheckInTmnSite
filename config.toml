@@ -1,8 +1,7 @@
-baseurl = "http://replace-this-with-your-hugo-site.com/"
-languageCode = "en-us"
+baseurl = "http://checkintmn.ru/"
+languageCode = "ru-RU"
 title = "CheckInTmn - фотопрогулки в Тюмени"
 
 [taxonomies]
 tag = "tags"
 category = "categories"
-series = "series"
