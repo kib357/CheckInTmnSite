@@ -10,20 +10,29 @@
         </div>
     </section>
 
-    <section id="main">
+    <section id="main" class="text-left">
         <div>
-            <h2 class="header">Маленькие истории большого города с авторскими иллюстрациями</h2>
-            <p>Фотопрогулка  – это ваша обычная прогулка, только к этому увлекательному процессу присоединяется фотограф.</p>
-            <p>Гулять можем в любой интересной точке города: Гилёвской роще, городской набережной, Цветном бульваре,
-                парке имени Юрия Гагарина, Аллее молодожёнов...</p>
-            <p>В общем, шикарных мест для фото в нашем городе предостаточно – выбирайте! </p>
+            <h2 class="header"><b>Фотопрогулка</b> – это ваша обычная прогулка, к которой присоединяется фотограф.</h2>
+            <p>Приятным бонусом к ярким фото станет интервью с вами на странице проекта.</p>
+            <p>Для чего это нужно? Тюмень – лучший город Земли, и в нём живут лучшие на планете люди. Check in TMN расскажет вам о них. А точнее – о вас!</p>
         </div>
     </section>
 
     <section id="portfolio">
         <div>
             <h2 class="header">Портфолио</h2>
-
+            <div class="photo-list">
+                <div class="wrapper">
+                    {{ range split "01,02,03" "," }}
+                        {{ partial "photoWrapper.html" . }}
+                    {{ end }}
+                </div>
+                <div class="wrapper">
+                    {{ range split "04,05,06" "," }}
+                        {{ partial "photoWrapper.html" . }}
+                    {{ end }}
+                </div>
+            </div>
         </div>
     </section>
 
@@ -115,8 +124,8 @@
         </div>
     </section>
 
-    <section id="blog-recent">
-        <div>
+    <section id="blog">
+        <div class="post-list">
             <h2 class="header">Новое в блоге</h2>
             {{ range first 3 .Data.Pages }}
             <div class="post post-preview">
