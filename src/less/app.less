@@ -1,5 +1,6 @@
 @import "./nav";
-@import "./blog.less";
+@import "./blog";
+@import "./lightbox";
 
 * {
   box-sizing: border-box;
@@ -165,7 +166,7 @@ section {
   padding: 0;
   background: url("/img/top.jpg");
   background-size: cover;
-  background-position-y: 60%;
+  background-position: 50% 60%;
   .top-content {
     padding-top: 90px;
     .logo {
@@ -197,7 +198,7 @@ section {
   @media screen and ( min-width: 737px ){
     height: 700px;
     background-image: url("/img/main-bw.jpg");
-    background-position-x: right;
+    background-position: right 0;
     background-repeat: no-repeat;
     background-size: contain;
     & > div {
@@ -242,9 +243,32 @@ section {
     .item {
       flex: 1 1;
       padding: 14px;
-      img {
-        display: block;
-        width: 100%;
+      .photo {
+        position: relative;
+        cursor: pointer;
+        border-radius: 2px;
+        &:hover {
+          .overlay {
+            opacity: 1;
+          }
+        }
+        .overlay {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-color: rgba(0,0,0, .26);
+          background-image: url("/img/enlarge.svg");
+          background-repeat: no-repeat;
+          background-position: center;
+          opacity: 0;
+          .transition(opacity .3s linear);
+        }
+        img {
+          display: block;
+          width: 100%;
+        }
       }
     }
   }

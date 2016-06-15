@@ -183,6 +183,53 @@
   margin: 0 auto;
   max-width: 44em;
 }
+#lightbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.81);
+}
+#lightbox.hidden {
+  display: none;
+}
+#lightbox .back {
+  flex: 0 0 10%;
+  cursor: pointer;
+  background-image: url("/img/back.svg");
+  background-position: 50% 24px;
+  background-repeat: no-repeat;
+}
+#lightbox .back:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+#lightbox .close {
+  flex: 0 0 10%;
+  cursor: pointer;
+  background-image: url("/img/close.svg");
+  background-position: right 24px top 24px;
+  background-repeat: no-repeat;
+}
+#lightbox .close:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+#lightbox .image {
+  position: fixed;
+  top: 24px;
+  right: 10%;
+  bottom: 24px;
+  left: 10%;
+  cursor: pointer;
+}
+#lightbox .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 * {
   box-sizing: border-box;
 }
@@ -341,7 +388,7 @@ section.text-left p {
   padding: 0;
   background: url("/img/top.jpg");
   background-size: cover;
-  background-position-y: 60%;
+  background-position: 50% 60%;
 }
 #top .top-content {
   padding-top: 90px;
@@ -372,7 +419,7 @@ section.text-left p {
   #main {
     height: 700px;
     background-image: url("/img/main-bw.jpg");
-    background-position-x: right;
+    background-position: right 0;
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -418,7 +465,30 @@ section.text-left p {
   flex: 1 1;
   padding: 14px;
 }
-#portfolio .photo-list .item img {
+#portfolio .photo-list .item .photo {
+  position: relative;
+  cursor: pointer;
+  border-radius: 2px;
+}
+#portfolio .photo-list .item .photo:hover .overlay {
+  opacity: 1;
+}
+#portfolio .photo-list .item .photo .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.26);
+  background-image: url("/img/enlarge.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s linear;
+  -o-transition: opacity 0.3s linear;
+  transition: opacity 0.3s linear;
+}
+#portfolio .photo-list .item .photo img {
   display: block;
   width: 100%;
 }
