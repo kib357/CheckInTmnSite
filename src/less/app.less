@@ -47,10 +47,12 @@ hr {
 
 footer {
   padding: 24px 0;
-  background-color: #43A047;
+  background-color: #212121;
+  background-image: url("/img/gray.png");
+  background-repeat: repeat;
   color: @darkText;
   hr {
-    border-top: 1px solid #C8E6C9;
+    border-top: 1px solid #ddd;
   }
   div {
     margin: 0 auto;
@@ -59,10 +61,10 @@ footer {
     text-align: center;
   }
   p.hugo {
-    color: #C8E6C9;
+    color: #ddd;
     font-size: 0.7rem;
     a {
-      color: #C8E6C9 !important;
+      color: #ddd !important;
     }
   }
 }
@@ -163,6 +165,7 @@ section {
   padding: 0;
   background: url("/img/top.jpg");
   background-size: cover;
+  background-position-y: 60%;
   .top-content {
     padding-top: 90px;
     .logo {
@@ -248,9 +251,61 @@ section {
 }
 
 #how {
-  // h2, p, span {
-  //   color: @darkText;
-  // }
+  background-color: #43A047;
+  color: #fff;
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    .timeslot {
+      display: flex;
+      .body {
+        padding: 24px 14px;
+        line-height: 1.6em;
+        font-size: 1rem;
+      }
+      .time {
+        flex: 0 0 10%;
+        text-align: center;
+        span {
+          display: inline-block;
+          margin-top: 20px;
+          font-size: 28px;
+          width: 46px;
+          line-height: 40px;
+          color: #fff;
+          background-color: #222651;
+          border: 3px solid #5db130;
+          border-radius: 50%;
+        }
+      }
+      .extra {
+        flex: 0 0 0;
+      }
+      @media screen and ( min-width: 739px ){
+        .body {
+          flex: 0 0 50%;
+          max-width: 500px;
+          border-left: 5px solid @lightDivider;
+          font-size: 1.3rem;
+        }
+        &:nth-child(2n + 1) {
+          flex-direction: row-reverse;
+          .body {
+            text-align: left;
+            border-left: none;
+            text-align: right;
+          }
+          .time {
+            border-left: 5px solid @lightDivider;
+          }
+        }
+        .extra {
+          flex: 0 0 40%;
+        }
+      }
+    }
+  }
 }
 
 #pricing {

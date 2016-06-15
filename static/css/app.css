@@ -232,11 +232,13 @@ hr {
 }
 footer {
   padding: 24px 0;
-  background-color: #43A047;
+  background-color: #212121;
+  background-image: url("/img/gray.png");
+  background-repeat: repeat;
   color: #ffffff;
 }
 footer hr {
-  border-top: 1px solid #C8E6C9;
+  border-top: 1px solid #ddd;
 }
 footer div {
   margin: 0 auto;
@@ -245,11 +247,11 @@ footer div {
   text-align: center;
 }
 footer p.hugo {
-  color: #C8E6C9;
+  color: #ddd;
   font-size: 0.7rem;
 }
 footer p.hugo a {
-  color: #C8E6C9 !important;
+  color: #ddd !important;
 }
 section {
   padding: 24px;
@@ -339,6 +341,7 @@ section.text-left p {
   padding: 0;
   background: url("/img/top.jpg");
   background-size: cover;
+  background-position-y: 60%;
 }
 #top .top-content {
   padding-top: 90px;
@@ -418,6 +421,63 @@ section.text-left p {
 #portfolio .photo-list .item img {
   display: block;
   width: 100%;
+}
+#how {
+  background-color: #43A047;
+  color: #fff;
+}
+#how .timeline {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+#how .timeline .timeslot {
+  display: flex;
+}
+#how .timeline .timeslot .body {
+  padding: 24px 14px;
+  line-height: 1.6em;
+  font-size: 1rem;
+}
+#how .timeline .timeslot .time {
+  flex: 0 0 10%;
+  text-align: center;
+}
+#how .timeline .timeslot .time span {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 28px;
+  width: 46px;
+  line-height: 40px;
+  color: #fff;
+  background-color: #222651;
+  border: 3px solid #5db130;
+  border-radius: 50%;
+}
+#how .timeline .timeslot .extra {
+  flex: 0 0 0;
+}
+@media screen and (min-width: 739px) {
+  #how .timeline .timeslot .body {
+    flex: 0 0 50%;
+    max-width: 500px;
+    border-left: 5px solid rgba(0, 0, 0, 0.12);
+    font-size: 1.3rem;
+  }
+  #how .timeline .timeslot:nth-child(2n + 1) {
+    flex-direction: row-reverse;
+  }
+  #how .timeline .timeslot:nth-child(2n + 1) .body {
+    text-align: left;
+    border-left: none;
+    text-align: right;
+  }
+  #how .timeline .timeslot:nth-child(2n + 1) .time {
+    border-left: 5px solid rgba(0, 0, 0, 0.12);
+  }
+  #how .timeline .timeslot .extra {
+    flex: 0 0 40%;
+  }
 }
 #pricing {
   background-color: #fff;
