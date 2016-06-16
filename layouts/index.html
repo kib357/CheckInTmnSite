@@ -164,7 +164,7 @@
                 </h3>
                 <form action="">
                     <label for="order-phone">Номер телефона *</label>
-                    <input type="tel" id="order-phone" required>
+                    <input type="tel" id="order-phone" pattern="^(\+7)?[()\s\-0-9]{10,}" required>
                     <label for="order-email">Адрес e-mail</label>
                     <input type="text" id="order-email" pattern="^\S+@\S+\.\S{1,3}$">
                     <label for="order-message">Комментарий</label>
@@ -180,12 +180,14 @@
                         <img src="/img/tinkoff.png" alt="Tinkoff" class="tinkoff">
                         <img src="/img/vm-logo.png" alt="Visa Mastercard" class="vm">
                     </div>
+                    <input type="checkbox" id="license" required>
+                    <label for="license">Я прочитал(а) и принимаю условию условия <a href="/offer">публичной оферты checkintmn</a></label>
                     <div class="actions">
                         <button type="submit" id="order-submit-pay">Заказать</button>
                     </div>
                 </form>
             </div>
-            <p>Бонус к каждой прогулке: интервью с хорошим человеком на стене Check in TMN)</p>
+            <p>Бонус к каждой прогулке: интервью с вами на ресурсах Check in TMN</p>
         </div>
     </section>
 

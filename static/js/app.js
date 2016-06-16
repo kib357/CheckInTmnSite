@@ -1,7 +1,7 @@
 var products = [
-    "Фотопрогрулка Light - до 30 минут / 15 фото",
-    "Фотопрогрулка Standard - до 50 минут / 35 фото",
-    "Фотопрогрулка Full - до 80 минут / 55 фото"
+    "Фотопрогрулка Light – до 30 минут, 15 фото",
+    "Фотопрогрулка Standard – до 50 минут, 35 фото",
+    "Фотопрогрулка Full – до 80 минут, 55 фото"
 ];
 
 document.addEventListener("DOMContentLoaded", function (event) {
