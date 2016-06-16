@@ -1,3 +1,9 @@
+var products = [
+    "Фотопрогрулка Light - до 30 минут / 15 фото",
+    "Фотопрогрулка Standard - до 50 минут / 35 фото",
+    "Фотопрогрулка Full - до 80 минут / 55 фото"
+];
+
 document.addEventListener("DOMContentLoaded", function (event) {
     initNav();
     initLightbox();
@@ -138,17 +144,32 @@ function initLightbox() {
 function initPrice() {
     var next = document.getElementById("nextPrice"),
         prev = document.getElementById("prevPrice"),
-        priceItems = document.querySelectorAll(".price-list .item");
-    next.addEventListener("click", nextPriceItem);
-    prev.addEventListener("click", prevPriceItem);
+        price = document.querySelector(".price-list"),
+        priceItems = document.querySelectorAll(".price-list .item"),
+        orderButtons = document.querySelectorAll(".price-list .item .price"),
+        cancelOrderBtn = document.getElementById("cancel-order"),
+        orderForm = document.querySelector(".order-form");
 
+    next.addEventListener("click", changePriceItem);
+    prev.addEventListener("click", changePriceItem.bind(this, true));
 
-    function nextPriceItem() {
+    for (var i = 0; i < orderButtons.length; i++) {
+        var btn = orderButtons[i];
+        btn.addEventListener("click", preOrder.bind(this, i));
+    }
+
+    cancelOrderBtn.addEventListener("click", cancelOrder);
+
+    function changePriceItem(prev) {
         for (var i = 0; i < priceItems.length; i++) {
             var item = priceItems[i];
             if (item.classList.contains("active")) {
                 item.classList.remove("active");
-                var nextIndex = (i + 1) >= priceItems.length ? 0 : i + 1;
+                if (prev) {
+                    var nextIndex = (i - 1) < 0 ? priceItems.length - 1 : i - 1;
+                } else {
+                    var nextIndex = (i + 1) >= priceItems.length ? 0 : i + 1;
+                }
                 priceItems[nextIndex].classList.add("active");
                 return;
             }
@@ -156,18 +177,16 @@ function initPrice() {
         priceItems[0].classList.add("active");
     }
 
-    function prevPriceItem() {
-        for (var i = 0; i < priceItems.length; i++) {
-            var item = priceItems[i];
-            if (item.classList.contains("active")) {
-                item.classList.remove("active");
-                var nextIndex = (i - 1) < 0 ? priceItems.length - 1 : i - 1;
-                priceItems[nextIndex].classList.add("active");
-                return;
-            }
-        }
-        priceItems[0].classList.add("active");
+    function preOrder(option) {
+        price.classList.add("hidden");
+        orderForm.classList.add("show");
+        document.getElementById("order-product").innerHTML = products[option];
+    }
 
+    function cancelOrder(e) {
+        e.preventDefault();
+        price.classList.remove("hidden");
+        orderForm.classList.remove("show");
     }
 }
 

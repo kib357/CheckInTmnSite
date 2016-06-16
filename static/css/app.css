@@ -43,6 +43,7 @@ form label {
 }
 form input[type="text"],
 form input[type="select"],
+form input[type="tel"],
 form textarea {
   width: 100%;
   margin-bottom: 14px;
@@ -58,23 +59,27 @@ form textarea {
 }
 form input[type="text"]:focus,
 form input[type="select"]:focus,
+form input[type="tel"]:focus,
 form textarea:focus {
   border-bottom: 1px solid #009688;
   box-shadow: 0 1px 0 0 #009688;
 }
 form input[type="text"].dirty:invalid,
 form input[type="select"].dirty:invalid,
+form input[type="tel"].dirty:invalid,
 form textarea.dirty:invalid {
   border-color: #E74C3C;
   box-shadow: 0 1px 0 0 #E74C3C;
 }
 form input[type="text"]:disabled,
 form input[type="select"]:disabled,
+form input[type="tel"]:disabled,
 form textarea:disabled {
   border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
 }
 form input[type="text"] ~ span.error,
 form input[type="select"] ~ span.error,
+form input[type="tel"] ~ span.error,
 form textarea ~ span.error {
   display: inline-block;
   position: absolute;
@@ -86,14 +91,17 @@ form textarea ~ span.error {
 }
 form input[type="text"].dirty ~ span.error,
 form input[type="select"].dirty ~ span.error,
+form input[type="tel"].dirty ~ span.error,
 form textarea.dirty ~ span.error,
 form input[type="text"]:focus ~ span.error,
 form input[type="select"]:focus ~ span.error,
+form input[type="tel"]:focus ~ span.error,
 form textarea:focus ~ span.error {
   opacity: 1;
 }
 form input[type="text"]:invalid ~ span.error,
 form input[type="select"]:invalid ~ span.error,
+form input[type="tel"]:invalid ~ span.error,
 form textarea:invalid ~ span.error {
   color: #E74C3C;
 }
@@ -598,39 +606,46 @@ section.text-left p {
   margin-bottom: 36px;
   margin-left: -24px;
   margin-right: -24px;
+  max-height: 900px;
+}
+#pricing .price-list.hidden {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.4s ease-out;
+  -o-transition: max-height 0.4s ease-out;
+  transition: max-height 0.4s ease-out;
 }
 #pricing .price-list .arrow {
   flex-grow: 1;
   display: block;
   min-width: 45px;
   position: relative;
+  cursor: pointer;
 }
-#pricing .price-list .arrow div {
+#pricing .price-list .arrow:hover img {
+  -webkit-filter: brightness(0.4);
+  -moz-filter: brightness(0.4);
+  filter: brightness(0.4);
+}
+#pricing .price-list .arrow img {
   position: absolute;
   top: 50%;
-  margin-top: -50px;
-  width: 0;
-  height: 0;
-  border-style: solid;
+  margin-top: -25px;
+  width: 45px;
 }
 #pricing .price-list .arrow .prev {
-  right: 0;
-  border-width: 50px 40px 50px 0;
-  border-color: transparent #ccc transparent transparent;
+  right: 5px;
 }
 #pricing .price-list .arrow .next {
-  left: 0;
-  border-width: 50px 0 50px 40px;
-  border-color: transparent transparent transparent #ccc;
+  left: 5px;
 }
 #pricing .price-list .item {
   width: 0;
   border-radius: 2px;
-  cursor: pointer;
   overflow: hidden;
 }
 #pricing .price-list .item.active {
-  margin: 24px 0;
+  margin: 24px 4px;
   width: 260px;
 }
 @media screen and (max-width: 993px) {
@@ -640,11 +655,6 @@ section.text-left p {
     transition: transform 0.6s cubic-bezier(0.4, -0.4, 0.6, 1.4);
     transform: rotate3d(0, 0, 1, 359deg);
   }
-}
-#pricing .price-list .item:hover {
-  -webkit-box-shadow: 0 2px 2px 0 rgba(33, 150, 243, 0.54), 0 3px 1px -2px rgba(33, 150, 243, 0.6), 0 1px 5px 0 rgba(33, 150, 243, 0.52);
-  -moz-box-shadow: 0 2px 2px 0 rgba(33, 150, 243, 0.54), 0 3px 1px -2px rgba(33, 150, 243, 0.6), 0 1px 5px 0 rgba(33, 150, 243, 0.52);
-  box-shadow: 0 2px 2px 0 rgba(33, 150, 243, 0.54), 0 3px 1px -2px rgba(33, 150, 243, 0.6), 0 1px 5px 0 rgba(33, 150, 243, 0.52);
 }
 #pricing .price-list .item:hover .back {
   -webkit-transition: transform 0.6s cubic-bezier(0.4, -0.4, 0.6, 1.4);
@@ -684,7 +694,7 @@ section.text-left p {
   left: 0;
   right: 0;
   text-align: center;
-  margin-top: -16px;
+  margin-top: -20px;
 }
 #pricing .price-list .item .head .title h3 {
   margin: 0;
@@ -712,9 +722,17 @@ section.text-left p {
 #pricing .price-list .item .price {
   padding: 16px;
   text-align: center;
-  font-size: 18px;
-  color: #444;
+  text-transform: uppercase;
+  color: #009688;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+#pricing .price-list .item .price:hover {
+  background-color: #43A047;
+  color: #fff;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
 @media screen and (min-width: 994px) {
   #pricing .price-list .item {
@@ -728,6 +746,45 @@ section.text-left p {
 }
 #pricing .order-form {
   margin: 0 auto;
-  width: 90%;
+  width: 95%;
   max-width: 400px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+#pricing .order-form.show {
+  max-height: 600px;
+  overflow: inherit;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s linear 0.4s;
+  -o-transition: opacity 0.4s linear 0.4s;
+  transition: opacity 0.4s linear 0.4s;
+}
+#pricing .order-form h3 a {
+  margin-left: -32px;
+}
+#pricing .order-form h3 span {
+  vertical-align: super;
+  font-size: 1.3rem;
+}
+@media screen and (min-width: 430px) {
+  #pricing .order-form .payment-type br {
+    display: none;
+  }
+}
+#pricing .order-form .logo {
+  padding: 14px 0;
+}
+#pricing .order-form .logo img {
+  height: 55px;
+  margin-right: 14px;
+}
+#pricing .order-form .actions {
+  float: none;
+  clear: both;
+  text-align: right;
+  padding-top: 8px;
+}
+#pricing .order-form .actions button {
+  color: #009688;
 }

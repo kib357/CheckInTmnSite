@@ -270,43 +270,49 @@ section {
     margin-bottom: 36px;
     margin-left: -24px;
     margin-right: -24px;
+    max-height: 900px;
+
+    &.hidden {
+      max-height: 0;
+      overflow: hidden;
+      .transition(max-height .4s ease-out);
+    }
 
     .arrow {
       flex-grow: 1;
       display: block;
       min-width: 45px;
       position: relative;
+      cursor: pointer;
 
-      div {
+      &:hover {
+        img {
+          .filter(brightness(.4));
+        }
+      }
+
+      img {
         position: absolute;
         top: 50%;
-        margin-top: -50px;
-        width: 0;
-        height: 0;
-        border-style: solid;
+        margin-top: -25px;
+        width: 45px;
       }
-
       .prev {
-        right: 0;
-        border-width: 50px 40px 50px 0;
-        border-color: transparent #ccc transparent transparent;
+        right: 5px;
       }
-
       .next {
-        left: 0;
-        border-width: 50px 0 50px 40px;
-        border-color: transparent transparent transparent #ccc;
+        left: 5px;
       }
     }
 
 		.item {
       width: 0;
       border-radius: 2px;
-      cursor: pointer;
+      // cursor: pointer;
       overflow: hidden;
 
       &.active {
-        margin: 24px 0;
+        margin: 24px 4px;
         width: 260px;
         @media screen and ( max-width: 993px ){
           .back {
@@ -317,7 +323,7 @@ section {
       }
 
       &:hover {
-        .box-shadow(0 2px 2px 0 rgba(33,150,243, .54), 0 3px 1px -2px rgba(33,150,243, .6), 0 1px 5px 0 rgba(33,150,243, .52););
+        // .box-shadow(0 2px 2px 0 rgba(33,150,243, .54), 0 3px 1px -2px rgba(33,150,243, .6), 0 1px 5px 0 rgba(33,150,243, .52););
         .back {
           .transition(transform .6s cubic-bezier(0.4,-0.4, 0.6, 1.4));
           transform: rotate3d(0,0,1,359deg);
@@ -353,7 +359,7 @@ section {
           left: 0;
           right: 0;
           text-align: center;
-          margin-top: -16px;
+          margin-top: -20px;
           h3 {
             margin: 0;
             font-size: 2.6em;
@@ -384,9 +390,17 @@ section {
 			.price {
 				padding: 16px;
 				text-align: center;
-				font-size: 18px;
-				color: #444;
+        text-transform: uppercase;
+				// font-size: 18px;
+				// color: #444;
+        color: @accent-color;
 				border-top: 1px solid @lightDivider;
+        cursor: pointer;
+        &:hover {
+          background-color: #43A047;
+          color: #fff;
+          .transition(all .3s linear);
+        }
 			}
 		}
 
@@ -404,8 +418,49 @@ section {
 
   .order-form {
     margin: 0 auto;
-    width: 90%;
+    width: 95%;
     max-width: 400px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    &.show {
+      max-height: 600px;
+      overflow: inherit;
+      opacity: 1;
+      .transition(opacity .4s linear .4s);
+    }
+    h3 {
+      a {
+        margin-left: -32px;
+      }
+      span {
+        vertical-align: super;
+        font-size: 1.3rem;
+      }
+    }
+    .payment-type {
+      br {
+        @media screen and ( min-width: 430px ){
+          display: none;
+        }
+      }
+    }
+    .logo {
+      padding: 14px 0;
+      img {
+        height: 55px;
+        margin-right: 14px;
+      }
+    }
+    .actions {
+      float: none;
+      clear: both;
+      text-align: right;
+      padding-top: 8px;
+      button {
+        color: @accent-color;
+      }
+    }
   }
 }
 
