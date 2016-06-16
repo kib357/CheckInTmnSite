@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     initNav();
     initLightbox();
+    initPrice();
 });
 
 function initNav() {
@@ -131,6 +132,42 @@ function initLightbox() {
         }
         currentUrl = currentGroup[nextIndex];
         lbImg.setAttribute("src", currentUrl);
+    }
+}
+
+function initPrice() {
+    var next = document.getElementById("nextPrice"),
+        prev = document.getElementById("prevPrice"),
+        priceItems = document.querySelectorAll(".price-list .item");
+    next.addEventListener("click", nextPriceItem);
+    prev.addEventListener("click", prevPriceItem);
+
+
+    function nextPriceItem() {
+        for (var i = 0; i < priceItems.length; i++) {
+            var item = priceItems[i];
+            if (item.classList.contains("active")) {
+                item.classList.remove("active");
+                var nextIndex = (i + 1) >= priceItems.length ? 0 : i + 1;
+                priceItems[nextIndex].classList.add("active");
+                return;
+            }
+        }
+        priceItems[0].classList.add("active");
+    }
+
+    function prevPriceItem() {
+        for (var i = 0; i < priceItems.length; i++) {
+            var item = priceItems[i];
+            if (item.classList.contains("active")) {
+                item.classList.remove("active");
+                var nextIndex = (i - 1) < 0 ? priceItems.length - 1 : i - 1;
+                priceItems[nextIndex].classList.add("active");
+                return;
+            }
+        }
+        priceItems[0].classList.add("active");
+
     }
 }
 

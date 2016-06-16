@@ -77,8 +77,11 @@
     <section id="pricing">
         <div>
             <h2 id="pricing-header" class="header">Заказать фотопрогулку</h2>
-            <div class="cards-list">
-                <div class="item card">
+            <div class="price-list">
+                <div class="arrow" id="prevPrice">
+                    <div class="prev"></div>
+                </div>
+                <div class="item">
                     <div class="head">
                         <div class="back">
                             <img src="/img/pricing-lite.png"/>
@@ -102,7 +105,7 @@
 				        </span>
                     </div>
                 </div>
-                <div class="item card">
+                <div class="item active">
                     <div class="head">
                         <div class="back">
                             <img src="/img/pricing-standard.png"/>
@@ -126,7 +129,7 @@
 				        </span>
                     </div>
                 </div>
-                <div class="item card">
+                <div class="item">
                     <div class="head">
                         <div class="back">
                             <img src="/img/pricing-full.png"/>
@@ -150,8 +153,23 @@
 				        </span>
                     </div>
                 </div>
+                <div class="arrow" id="nextPrice">
+                    <div class="next"></div>
+                </div>
             </div>
             <p>Бонус к каждой прогулке: интервью с хорошим человеком на стене Check in TMN)</p>
+            <div class="order-form">
+                <h3>Оформление заказа</h3>
+                <form action="">
+                    <label for="order-phone">Номер телефона</label>
+                    <input type="text" id="order-phone">
+                    <label for="order-email">Адрес e-mail</label>
+                    <input type="text" id="order-email" required>
+                    <label for="order-message">Комментарий</label>
+                    <textarea id="order-message" rows="5"></textarea>
+                    <button type="submit" id="order-submit">Перейти к оплате</button>
+                </form>
+            </div>
         </div>
     </section>
 
