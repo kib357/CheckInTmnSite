@@ -1,22 +1,22 @@
-<div id="navbar" {{ if eq $.IsHome false }} class="shrink no-expand blog" {{ end }} >
+<div id="navbar" {{ if eq $.IsHome false }} class="no-expand blog" {{ end }} >
     <div class="container">
-        <button type="button" class="navbar-toggle" id="nav-toggle">
+        <!--<button type="button" class="navbar-toggle" id="nav-toggle">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </button>
+        </button>-->
         <ul class="nav collapse" id="nav">
-            <li>
+            <li class="collapse">
                 <a href="#main" class="nav-link index-link" data-active-until="main-end">
                     О проекте
                 </a>
             </li>
-            <li>
+            <li class="collapse">
                 <a href="#pricing" class="nav-link index-link" data-active-until="pricing-end">
                     Цены
                 </a>
             </li>
-            <li>
+            <li class="collapse">
                 <a href="#contacts" class="nav-link index-link" data-active-until="contacts-end" data-active-after="contacts-start">
                     Контакты
                 </a>

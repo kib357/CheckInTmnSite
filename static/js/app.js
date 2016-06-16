@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });
 
 function initNav() {
-    var ticking = false, minScrolledPosition = 170, navbar = document.getElementById("navbar");
+    var ticking = false, maxScrolledPosition = 170, navbar = document.getElementById("navbar");
     window.addEventListener('scroll', updateScrollPosition);
     setInterval(updateScrollPosition, 200);
 
@@ -33,13 +33,13 @@ function initNav() {
     }
 
     function checkScrolledClass(scrollPosition) {
-        if (scrollPosition > minScrolledPosition) {
-            if (navbar.className.indexOf("shrink") < 0) {
-                navbar.classList.add("shrink");
+        if (scrollPosition < maxScrolledPosition) {
+            if (navbar.className.indexOf("expand") < 0) {
+                navbar.classList.add("expand");
             }
         } else {
-            if (navbar.className.indexOf("shrink") >= 0 && navbar.className.indexOf("no-expand") < 0) {
-                navbar.classList.remove("shrink");
+            if (navbar.className.indexOf("expand") >= 0 && navbar.className.indexOf("no-expand") < 0) {
+                navbar.classList.remove("expand");
             }
         }
     }
