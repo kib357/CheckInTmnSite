@@ -163,6 +163,8 @@
                     <span id="order-product">Оформление заказа</span>
                 </h3>
                 <form action="" id="order-form">
+                    <label for="order-name">Ваше имя *</label>
+                    <input type="text" id="order-name" name="name" required>
                     <label for="order-phone">Номер телефона *</label>
                     <input type="tel" id="order-phone" name="phone" pattern="^(\+7)?[()\s\-0-9]{10,}" required>
                     <label for="order-email">Адрес e-mail</label>
@@ -192,7 +194,13 @@
                     </div>
                 </form>
             </div>
-            <p>Бонус к каждой прогулке: интервью с вами на ресурсах Check in TMN</p>
+            <div class="order-success">
+                <h3></h3>
+                <p></p>
+                <p></p>
+                <button type="submit" id="order-close">Закрыть</button>
+            </div>
+            <p class="bonus">Бонус к каждой прогулке: интервью с вами на ресурсах Check in TMN</p>
         </div>
     </section>
 

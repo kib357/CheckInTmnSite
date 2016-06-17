@@ -600,10 +600,13 @@ section.text-left p {
 #pricing {
   background-color: #fff;
 }
+#pricing .bonus {
+  padding-top: 36px;
+}
 #pricing .price-list {
   display: flex;
   justify-content: center;
-  margin-bottom: 36px;
+  margin-bottom: 14px;
   margin-left: -24px;
   margin-right: -24px;
   max-height: 900px;
@@ -814,8 +817,28 @@ section.text-left p {
   clear: both;
   text-align: right;
   padding-top: 14px;
-  padding-bottom: 36px;
+  padding-bottom: 14px;
 }
 #pricing .order-form-container .actions button {
   color: #009688;
+}
+#pricing .order-success {
+  margin: 0 auto;
+  width: 95%;
+  max-width: 400px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+#pricing .order-success.show {
+  max-height: 650px;
+  overflow: inherit;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s linear 0.4s;
+  -o-transition: opacity 0.4s linear 0.4s;
+  transition: opacity 0.4s linear 0.4s;
+}
+#pricing .order-success p {
+  font-size: 1rem;
+  text-align: left;
 }

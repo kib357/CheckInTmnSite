@@ -1,3 +1,7 @@
+var acceptedText = "Поздравляем, ваш заказ <b>#{{orderId}}</b> принят!"
+successText = "Сохраните номер заказа и оставайтесь на связи, мы скоро перезвоним.",
+    orderErrorText = "Произошла ошибка на серверe, попробуйте позже или позвоните нам.",
+    waitPaymentFormText = "Форма оплаты откроется через {{s}}с.";
 var products = [
     "Фотопрогрулка Light – до 30 минут, 15 фото",
     "Фотопрогрулка Standard – до 50 минут, 35 фото",
@@ -171,7 +175,8 @@ function initPrice() {
         orderForm = document.getElementById("order-form"),
         formInputs = document.querySelectorAll(".order-form input, .order-form textarea"),
         formSubmit = document.getElementById("order-submit-pay"),
-        paymentInputs = document.getElementsByName("paymentType");
+        paymentInputs = document.getElementsByName("paymentType"),
+        orderSuccess = document.querySelector(".order-success");
 
     var product, amount;
 
@@ -187,6 +192,7 @@ function initPrice() {
     }
 
     cancelOrderBtn.addEventListener("click", cancelOrder);
+    document.getElementById("order-close").addEventListener("click", closeOrder);
 
     formSubmit.addEventListener("click", order);
 
@@ -219,6 +225,12 @@ function initPrice() {
         e.preventDefault();
         price.classList.remove("hidden");
         orderFormContainer.classList.remove("show");
+        orderSuccess.classList.remove("show");
+    }
+
+    function closeOrder(e) {
+        cancelOrder(e);
+        clearForm(orderForm);
     }
 
     function paymenTypeChangedHandler(e) {
@@ -237,15 +249,26 @@ function initPrice() {
             sendOrder(formData, function (err, orderId) {
                 formSubmit.removeAttribute("disabled");
                 if (err) {
-                    alert("Произошла ошибка на серверe, попробуйте позже или позвоните нам.");
+                    alert(orderErrorText);
                 } else {
-                    // alert("Поздравляем, ваш заказ с номером '" + orderId + "' оформлен.");
-                    console.log(formData);
+                    orderFormContainer.classList.remove("show");
+                    orderSuccess.classList.add("show");
+                    orderSuccess.children[0].innerHTML = acceptedText.replace("{{orderId}}", orderId);
+                    orderSuccess.children[1].innerHTML = "<p>" + product + "</p>";
                     if (formData.paymentType === "online") {
-                        setTimeout(function () {
-
-                            makePaymentWithWidget(amount, orderId, product);
-                        }, 3000);
+                        var s = 5;
+                        var interval = setInterval(function () {
+                            if (s > 0) {
+                                s--;
+                                orderSuccess.children[2].innerHTML = waitPaymentFormText.replace("{{s}}", s);
+                            } else {
+                                clearInterval(interval);
+                                orderSuccess.children[2].innerHTML = successText;
+                                makePaymentWithWidget(amount, orderId, "- " + product);
+                            }
+                        }, 1000);
+                    } else {
+                        orderSuccess.children[2].innerHTML = successText;
                     }
                 }
             })
@@ -309,23 +332,60 @@ function parseForm(form) {
     return res;
 }
 
+function clearForm(form) {
+    var res = {};
+    for (var i = form.elements.length - 1; i >= 0; i--) {
+        if (!form.elements[i].name) {
+            continue;
+        }
+        var r = [];
+        switch (form.elements[i].nodeName) {
+            case 'INPUT':
+                switch (form.elements[i].type) {
+                    case 'checkbox':
+                        form.elements[i].checked = false;
+                        break;
+                    case 'radio':
+                        // if (r.indexOf(form.elements[i].name) < 0) {
+                        //     r.push(form.elements[i].name);
+                        //     form.elements[i].checked = true;
+                        // } else {
+                        //     form.elements[i].checked = false;
+                        // }
+                        break;
+                    default:
+                        form.elements[i].value = "";
+                        break;
+                }
+                break;
+            case 'TEXTAREA':
+            case 'SELECT':
+                form.elements[i].value = "";
+                break;
+        }
+    }
+    return res;
+}
+
 function sendOrder(data, cb) {
     var xhr = new XMLHttpRequest();
     xhr.addEventListener('readystatechange', function (e) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
+                var res;
                 try {
-                    var res = JSON.parse(xhr.responseText);
-                    if (res.error) {
-                        console.error("Order error:", res);
-                        cb(500, null);
-                    } else {
-                        cb(null, res.result._id);
-                    }
+                    res = JSON.parse(xhr.responseText);
                 }
                 catch (e) {
                     console.error("Order error:", e);
                     cb(500, null);
+                    return;
+                }
+                if (res.error) {
+                    console.error("Order error:", res);
+                    cb(500, null);
+                } else {
+                    cb(null, res.result.orderId);
                 }
             } else {
                 cb(xhr.status, null);
