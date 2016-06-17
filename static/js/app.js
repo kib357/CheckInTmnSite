@@ -128,6 +128,14 @@ function initLightbox() {
         }
     }
 
+    setInterval(function () {
+        if (window.innerWidth / window.innerHeight > 1.75) {
+            lb.classList.add("v");
+        } else {
+            lb.classList.remove("v");
+        }
+    }, 300);
+
     function showLightbox(groupName, url) {
         lb.classList.remove("hidden");
         currentGroup = imgGroups[groupName];
@@ -135,12 +143,60 @@ function initLightbox() {
         lbBack.style.visibility = currentGroup.length > 1 ? "visible" : "hidden";
         lbBack.style.visibility = currentGroup.length > 1 ? "visible" : "hidden";
         lbImg.setAttribute("src", currentUrl);
+        document.addEventListener("keydown", keyDownHandler);
+        disableScroll();
     }
 
-    function hideLightbox(groupName, url) {
+    function hideLightbox() {
         lb.classList.add("hidden");
         currentUrl = "";
         lbImg.setAttribute("src", currentUrl);
+        document.removeEventListener("keydown", keyDownHandler);
+        enableScroll();
+    }
+
+    // left: 37, up: 38, right: 39, down: 40,
+    // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+    var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+
+    function preventDefault(e) {
+        e = e || window.event;
+        if (e.preventDefault)
+            e.preventDefault();
+        e.returnValue = false;
+    }
+
+    function keyDownHandler(e) {
+        if (e.keyCode === 27) {
+            hideLightbox();
+        }
+        if (e.keyCode === 37) {
+            prevImg(e);
+        }
+        if (e.keyCode === 39) {
+            nextImg(e);
+        }
+        if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
+        }
+    }
+
+
+    function disableScroll() {
+        window.addEventListener('DOMMouseScroll', preventDefault);
+        window.addEventListener("wheel", preventDefault); // modern standard
+        window.addEventListener("mousewheel", preventDefault); // older browsers, IE
+        document.addEventListener("mousewheel", preventDefault); // older browsers, IE
+        window.addEventListener("touchmove", preventDefault); // mobile
+    }
+
+    function enableScroll() {
+        window.removeEventListener('DOMMouseScroll', preventDefault);
+        window.removeEventListener("wheel", preventDefault);
+        window.removeEventListener("mousewheel", preventDefault);
+        document.removeEventListener("mousewheel", preventDefault);
+        window.removeEventListener("touchmove", preventDefault);
     }
 
     function nextImg(e) {
@@ -214,6 +270,8 @@ function initPrice() {
     }
 
     function preOrder(option) {
+        alert("Опция заказа с сайта пока не доступна");
+        return;
         price.classList.add("hidden");
         orderFormContainer.classList.add("show");
         document.getElementById("order-product").innerHTML = products[option];
@@ -251,20 +309,23 @@ function initPrice() {
                 if (err) {
                     alert(orderErrorText);
                 } else {
+                    document.getElementById("pricing").scrollIntoView();
                     orderFormContainer.classList.remove("show");
                     orderSuccess.classList.add("show");
                     orderSuccess.children[0].innerHTML = acceptedText.replace("{{orderId}}", orderId);
-                    orderSuccess.children[1].innerHTML = "<p>" + product + "</p>";
+                    orderSuccess.children[1].innerHTML = "<p><b>" + product + "</b></p>";
                     if (formData.paymentType === "online") {
-                        var s = 5;
+                        var s = 10;
                         var interval = setInterval(function () {
                             if (s > 0) {
                                 s--;
                                 orderSuccess.children[2].innerHTML = waitPaymentFormText.replace("{{s}}", s);
+                                if (s < 2) {
+                                    makePaymentWithWidget(amount, orderId, "- " + product);
+                                }
                             } else {
                                 clearInterval(interval);
                                 orderSuccess.children[2].innerHTML = successText;
-                                makePaymentWithWidget(amount, orderId, "- " + product);
                             }
                         }, 1000);
                     } else {

@@ -9,9 +9,10 @@ input[type="button"] {
   color: rgba(0, 0, 0, 0.87);
   text-decoration: none !important;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   outline: none !important;
+  cursor: pointer;
 }
 button:disabled,
 input[type="button"]:disabled {
@@ -340,9 +341,15 @@ form textarea {
   cursor: pointer;
 }
 #lightbox .image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
+}
+#lightbox.v .image img {
   height: 100%;
-  object-fit: contain;
+  width: auto;
 }
 * {
   box-sizing: border-box;
@@ -747,6 +754,27 @@ section.text-left p {
     display: none;
   }
 }
+#pricing .order-form-container h3,
+#pricing .order-success h3 {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+#pricing .order-form-container h3 a,
+#pricing .order-success h3 a {
+  margin-left: -37px;
+}
+#pricing .order-form-container h3 span,
+#pricing .order-success h3 span {
+  vertical-align: super;
+}
+#pricing .order-form-container .actions,
+#pricing .order-success .actions {
+  float: none;
+  clear: both;
+  text-align: right;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
 #pricing .order-form-container {
   margin: 0 auto;
   width: 95%;
@@ -762,13 +790,6 @@ section.text-left p {
   -webkit-transition: opacity 0.4s linear 0.4s;
   -o-transition: opacity 0.4s linear 0.4s;
   transition: opacity 0.4s linear 0.4s;
-}
-#pricing .order-form-container h3 a {
-  margin-left: -32px;
-}
-#pricing .order-form-container h3 span {
-  vertical-align: super;
-  font-size: 1.3rem;
 }
 #pricing .order-form-container .payment-type .line-break {
   height: 7px;
@@ -812,15 +833,9 @@ section.text-left p {
 #pricing .order-form-container .accept-offer label {
   margin-left: 7px;
 }
-#pricing .order-form-container .actions {
-  float: none;
-  clear: both;
-  text-align: right;
-  padding-top: 14px;
-  padding-bottom: 14px;
-}
 #pricing .order-form-container .actions button {
-  color: #009688;
+  background-color: #009688;
+  color: #fff;
 }
 #pricing .order-success {
   margin: 0 auto;
@@ -834,11 +849,14 @@ section.text-left p {
   max-height: 650px;
   overflow: inherit;
   opacity: 1;
-  -webkit-transition: opacity 0.4s linear 0.4s;
-  -o-transition: opacity 0.4s linear 0.4s;
-  transition: opacity 0.4s linear 0.4s;
+  -webkit-transition: opacity 0.4s linear;
+  -o-transition: opacity 0.4s linear;
+  transition: opacity 0.4s linear;
 }
 #pricing .order-success p {
   font-size: 1rem;
   text-align: left;
+}
+#pricing .order-success .actions button {
+  color: #009688;
 }

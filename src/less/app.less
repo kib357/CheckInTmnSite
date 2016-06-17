@@ -419,6 +419,27 @@ section {
     }
 	}
 
+  .order-form-container,
+  .order-success {
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 300;
+      a {
+        margin-left: -37px;
+      }
+      span {
+        vertical-align: super;
+      }
+    }
+    .actions {
+      float: none;
+      clear: both;
+      text-align: right;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+  }
+
   .order-form-container {
     margin: 0 auto;
     width: 95%;
@@ -431,15 +452,6 @@ section {
       overflow: inherit;
       opacity: 1;
       .transition(opacity .4s linear .4s);
-    }
-    h3 {
-      a {
-        margin-left: -32px;
-      }
-      span {
-        vertical-align: super;
-        font-size: 1.3rem;
-      }
     }
     .payment-type {
       .line-break {
@@ -479,15 +491,9 @@ section {
         margin-left: 7px;
       }
     }
-    .actions {
-      float: none;
-      clear: both;
-      text-align: right;
-      padding-top: 14px;
-      padding-bottom: 14px;
-      button {
-        color: @accent-color;
-      }
+    .actions button {
+      background-color: @accent-color;
+      color: #fff;
     }
   }
   .order-success {
@@ -501,12 +507,16 @@ section {
       max-height: 650px;
       overflow: inherit;
       opacity: 1;
-      .transition(opacity .4s linear .4s);
+      .transition(opacity .4s linear);
     }
 
     p {
       font-size: 1rem;
       text-align: left;
+    }
+
+    .actions button {
+      color: @accent-color;
     }
   }
 }
