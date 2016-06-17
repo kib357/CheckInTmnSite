@@ -416,7 +416,7 @@ section {
     }
 	}
 
-  .order-form {
+  .order-form-container {
     margin: 0 auto;
     width: 95%;
     max-width: 400px;
@@ -439,24 +439,49 @@ section {
       }
     }
     .payment-type {
-      br {
+      .line-break {
+        height: 7px;
         @media screen and ( min-width: 430px ){
           display: none;
         }
       }
+      label {
+        margin-left: 4px;
+      }
     }
     .logo {
-      padding: 14px 0;
+      margin: 24px 0;
+      max-height: 83px;
+      overflow: hidden;
+      .transition(max-height .3s linear);
+      &.hidden {
+        max-height: 0;
+        img {
+          opacity: 0;
+        }
+      }
       img {
         height: 55px;
         margin-right: 14px;
+        .transition(opacity .3s linear);
+      }
+    }
+    .accept-offer {
+      display: flex;
+      input {
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      label {
+        margin-left: 7px;
       }
     }
     .actions {
       float: none;
       clear: both;
       text-align: right;
-      padding-top: 8px;
+      padding-top: 14px;
+      padding-bottom: 36px;
       button {
         color: @accent-color;
       }

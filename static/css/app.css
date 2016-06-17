@@ -64,10 +64,10 @@ form textarea:focus {
   border-bottom: 1px solid #009688;
   box-shadow: 0 1px 0 0 #009688;
 }
-form input[type="text"].dirty:invalid,
-form input[type="select"].dirty:invalid,
-form input[type="tel"].dirty:invalid,
-form textarea.dirty:invalid {
+form input[type="text"]:focus:invalid,
+form input[type="select"]:focus:invalid,
+form input[type="tel"]:focus:invalid,
+form textarea:focus:invalid {
   border-color: #E74C3C;
   box-shadow: 0 1px 0 0 #E74C3C;
 }
@@ -744,7 +744,7 @@ section.text-left p {
     display: none;
   }
 }
-#pricing .order-form {
+#pricing .order-form-container {
   margin: 0 auto;
   width: 95%;
   max-width: 400px;
@@ -752,7 +752,7 @@ section.text-left p {
   overflow: hidden;
   opacity: 0;
 }
-#pricing .order-form.show {
+#pricing .order-form-container.show {
   max-height: 650px;
   overflow: inherit;
   opacity: 1;
@@ -760,31 +760,62 @@ section.text-left p {
   -o-transition: opacity 0.4s linear 0.4s;
   transition: opacity 0.4s linear 0.4s;
 }
-#pricing .order-form h3 a {
+#pricing .order-form-container h3 a {
   margin-left: -32px;
 }
-#pricing .order-form h3 span {
+#pricing .order-form-container h3 span {
   vertical-align: super;
   font-size: 1.3rem;
 }
+#pricing .order-form-container .payment-type .line-break {
+  height: 7px;
+}
 @media screen and (min-width: 430px) {
-  #pricing .order-form .payment-type br {
+  #pricing .order-form-container .payment-type .line-break {
     display: none;
   }
 }
-#pricing .order-form .logo {
-  padding: 14px 0;
+#pricing .order-form-container .payment-type label {
+  margin-left: 4px;
 }
-#pricing .order-form .logo img {
+#pricing .order-form-container .logo {
+  margin: 24px 0;
+  max-height: 83px;
+  overflow: hidden;
+  -webkit-transition: max-height 0.3s linear;
+  -o-transition: max-height 0.3s linear;
+  transition: max-height 0.3s linear;
+}
+#pricing .order-form-container .logo.hidden {
+  max-height: 0;
+}
+#pricing .order-form-container .logo.hidden img {
+  opacity: 0;
+}
+#pricing .order-form-container .logo img {
   height: 55px;
   margin-right: 14px;
+  -webkit-transition: opacity 0.3s linear;
+  -o-transition: opacity 0.3s linear;
+  transition: opacity 0.3s linear;
 }
-#pricing .order-form .actions {
+#pricing .order-form-container .accept-offer {
+  display: flex;
+}
+#pricing .order-form-container .accept-offer input {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+#pricing .order-form-container .accept-offer label {
+  margin-left: 7px;
+}
+#pricing .order-form-container .actions {
   float: none;
   clear: both;
   text-align: right;
-  padding-top: 8px;
+  padding-top: 14px;
+  padding-bottom: 36px;
 }
-#pricing .order-form .actions button {
+#pricing .order-form-container .actions button {
   color: #009688;
 }

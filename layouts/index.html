@@ -157,31 +157,36 @@
                     <img src="/img/next.svg" class="next" alt="next">
                 </div>
             </div>
-            <div class="order-form">
+            <div class="order-form-container">
                 <h3>
                     <a href id="cancel-order"><img src="/img/back.svg" alt="back"></a>
                     <span id="order-product">Оформление заказа</span>
                 </h3>
-                <form action="">
+                <form action="" id="order-form">
                     <label for="order-phone">Номер телефона *</label>
-                    <input type="tel" id="order-phone" pattern="^(\+7)?[()\s\-0-9]{10,}" required>
+                    <input type="tel" id="order-phone" name="phone" pattern="^(\+7)?[()\s\-0-9]{10,}" required>
                     <label for="order-email">Адрес e-mail</label>
-                    <input type="text" id="order-email" pattern="^\S+@\S+\.\S{1,3}$">
+                    <input type="text" id="order-email" name="email" pattern="^\S+@\S+\.\S{1,3}$">
                     <label for="order-message">Комментарий</label>
-                    <textarea id="order-message" rows="3"></textarea>
+                    <textarea id="order-message" name="comment" rows="3"></textarea>
                     <label>Оплата</label>
                     <div class="payment-type">
-                    <input type="radio" id="payment-online" name="order-payment" value="online" checked>
-                    <label for="payment-online">Банковской картой на сайте</label>&nbsp;<br/>
-                    <input type="radio" id="payment-cash" name="order-payment" value="cash">
+                    <input type="radio" id="payment-online" name="paymentType" value="online" checked>
+                    <label for="payment-online">Банковской картой на сайте</label>&nbsp;
+                    <div class="line-break"></div>
+                    <input type="radio" id="payment-cash" name="paymentType" value="cash">
                     <label for="payment-cash">Наличными</label>
                     </div>
-                    <div class="logo">
+                    <div class="logo" id="payment-logo">
                         <img src="/img/tinkoff.png" alt="Tinkoff" class="tinkoff">
                         <img src="/img/vm-logo.png" alt="Visa Mastercard" class="vm">
                     </div>
-                    <input type="checkbox" id="license" required>
-                    <label for="license">Я прочитал(а) и принимаю условию условия <a href="/offer">публичной оферты checkintmn</a></label>
+                    <div class="accept-offer">
+                        <input type="checkbox" id="accept" name="offerAccepted" required>
+                        <label for="accept">Я прочитал(а) и принимаю условию условия публичной
+                            <a href="/offer.pdf" target="blank">оферты</a> Check in TMN.
+                        </label>
+                    </div>
                     <div class="actions">
                         <button type="submit" id="order-submit-pay">Заказать</button>
                     </div>
