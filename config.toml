@@ -1,6 +1,6 @@
 baseurl = "http://checkintmn.ru/"
 languageCode = "ru-RU"
-title = "CheckInTmn - фотопрогулки по Тюмени"
+title = "Check in TMN - фотопрогулки по Тюмени"
 
 [params]
   description = "Фотосъёмка для портфолио, семейного альбома, lovestory в формате прогулки с фотографом по Тюмени"
