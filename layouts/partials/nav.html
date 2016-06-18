@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a href="/post/" class="nav-link {{ if eq $.IsHome false }} active {{ end}}">
+                <a href="/post/" class="nav-link {{ if $.IsNode }}{{if eq $.URL "/post/" }} active {{ end }}{{ end }}{{ if $.IsPage }}{{if eq $.Type "post" }} active {{ end }}{{ end }}">
                     Блог
                 </a>
             </li>

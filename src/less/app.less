@@ -56,10 +56,10 @@ footer {
   hr {
     border-top: 1px solid #ddd;
   }
-  div {
+  & > div {
     margin: 0 auto;
-    width: 60%;
-    max-width: 360px;
+    width: 80%;
+    max-width: 400px;
     text-align: center;
   }
   p.hugo {
@@ -67,6 +67,26 @@ footer {
     font-size: 0.7rem;
     a {
       color: #ddd !important;
+    }
+  }
+  .social {
+    padding-top: 24px;
+  }
+  ul.footer-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 0 14px;
+      a {
+        color: #ddd;
+        text-align: center;
+        font-size: 0.8rem;
+        text-decoration: none;
+      }
     }
   }
 }
@@ -89,6 +109,21 @@ section {
   text-align: center;
   font-size: 2.3em;
   font-weight: 400;
+}
+
+#page {
+  margin: 0 7.14286%;
+  padding: 72px 0;
+  .page-wrapper {
+      margin: 0 auto;
+      max-width: 44em;
+  }
+  .page-content {
+    .content {
+        margin-top: 14px;
+        line-height: 160%;
+    }
+  }
 }
 
 #top {

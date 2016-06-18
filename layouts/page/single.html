@@ -1,11 +1,8 @@
 {{ partial "header.html" . }}
 
-<div id="blog">
-  <div class="post-wrapper">
-    <div class="post">
-      <div class="post-date">
-        <h2>{{ partial "post_date.html" . }}</h2>
-      </div>
+<div id="page">
+  <div class="page-wrapper">
+    <div class="page-content">
       <h1>{{ .Title }}</h1>
       <div class="content">
       {{ .Content }}

@@ -212,18 +212,21 @@
         <div class="post-list">
             <h2 class="header">Новое в блоге</h2>
             {{ range first 3 .Data.Pages }}
-            <div class="post post-preview">
-                <div class="summary">
-                    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                    {{ partial "tags.html" . }}
-                    <div class="content">
-                    {{ .Summary }}
-                    </div>
-                </div>
-                {{ if .Truncated }}
-                    <a class="read-more-link" href="{{ .RelPermalink }}">Читать дальше →</a>
+                {{ if eq .Type "post"}}
+                    <article class="post post-preview">
+                        <div class="summary">
+                            <span class="post-date">{{ partial "post_date.html" . }}</span>
+                            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                            {{ partial "tags.html" . }}
+                            <div class="content">
+                            {{ .Summary }}
+                            </div>
+                        </div>
+                        {{ if .Truncated }}
+                            <a class="read-more-link" href="{{ .RelPermalink }}">Читать дальше →</a>
+                        {{ end }}
+                    </article>
                 {{ end }}
-            </div>
             {{ end }}
         </div>
     </section>
