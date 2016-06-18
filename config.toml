@@ -1,6 +1,11 @@
 baseurl = "http://checkintmn.ru/"
 languageCode = "ru-RU"
-title = "CheckInTmn - фотопрогулки в Тюмени"
+title = "CheckInTmn - фотопрогулки по Тюмени"
+
+[params]
+  description = "Фотосъёмка для портфолио, семейного альбома, lovestory в формате прогулки с фотографом по Тюмени"
+  author = "Квитова Екатерина и Евгений Кувшинов"
+  keywords = "фотосъёмка, фотограф, фотопрогулка, тюмень"
 
 [taxonomies]
 tag = "tags"

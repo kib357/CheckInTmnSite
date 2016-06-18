@@ -4,6 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport"> {{ partial "meta.html" . }}
+    {{ .Hugo.Generator }}
+
+    {{ if .Description }}
+        <meta name="description" content="{{ .Description }}">
+        {{else}}
+        <meta name="description" content="{{ .Site.Params.description }}">
+    {{ end }}
+
+    {{ if .Keywords }}
+        <meta name="keywords" content="{{ delimit .Keywords ", " }}">
+        {{else}}
+        <meta name="keywords" content="{{ .Site.Params.keywords }}">
+    {{ end }}
+
+    <meta name="author" content="{{ .Site.Params.author }}">
+
 
     <base href="{{ .Site.BaseURL }}">
     <title>{{ .Site.Title }}</title>
