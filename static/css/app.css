@@ -278,6 +278,7 @@ form textarea {
 }
 .post img {
   width: 100%;
+  margin: 24px auto;
 }
 .read-more-link {
   display: inline-block;
