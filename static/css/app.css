@@ -251,6 +251,10 @@ form textarea {
   margin-top: 14px;
   line-height: 160%;
 }
+.post .content img {
+  width: 100%;
+  margin: 24px auto;
+}
 .post.post-preview {
   margin-top: 36px;
 }
@@ -275,10 +279,6 @@ form textarea {
 }
 .post ul.tags li img {
   width: 20px;
-}
-.post img {
-  width: 100%;
-  margin: 24px auto;
 }
 .read-more-link {
   display: inline-block;
