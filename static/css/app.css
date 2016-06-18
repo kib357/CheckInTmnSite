@@ -256,6 +256,21 @@ form textarea {
   width: 100%;
   margin: 24px auto;
 }
+.post .content blockquote {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 7px;
+  border-left: 3px solid #455A64;
+}
+.post .content blockquote p {
+  margin-bottom: 0;
+}
+.post .content blockquote + p {
+  margin-top: 0;
+  text-align: right;
+  font-style: italic;
+  font-size: .8rem;
+}
 .post.post-preview {
   margin-top: 36px;
 }
