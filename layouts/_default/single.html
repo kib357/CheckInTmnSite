@@ -7,6 +7,7 @@
         <h2>{{ partial "post_date.html" . }}</h2>
       </div>
       <h1>{{ .Title }}</h1>
+      {{ partial "tags.html" . }}
       <div class="content">
       {{ .Content }}
       </div>
