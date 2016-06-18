@@ -257,6 +257,7 @@ form textarea {
   margin: 24px auto;
 }
 .post .content p {
+  margin-bottom: 0;
   font-size: 1rem;
   text-align: left;
   line-height: 160%;
@@ -266,9 +267,6 @@ form textarea {
   margin-bottom: 0;
   padding-left: 7px;
   border-left: 3px solid #455A64;
-}
-.post .content blockquote p {
-  margin-bottom: 0;
 }
 .post .content blockquote + p {
   margin-top: 0;
