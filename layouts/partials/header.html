@@ -22,7 +22,15 @@
 
 
     <base href="{{ .Site.BaseURL }}">
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
+{{ if .IsHome }}
+    <title>{{ .Site.Title }}</title>
+{{ else }}
+    {{ if .IsNode }}
+    <title>{{ index $.Site.Data.titles .Title }} &middot; {{ .Site.Title }}</title>
+    {{ else }}
+    <title>{{ .Title }} &middot; {{ .Site.Title }}</title>
+    {{ end }}
+{{ end }}
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="shortcut icon" href="/img/favicon.png" />
     <link href="{{ .RSSlink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" /> {{ partial "head_includes.html" . }}
