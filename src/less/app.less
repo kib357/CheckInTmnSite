@@ -111,6 +111,32 @@ section {
   font-weight: 400;
 }
 
+#notifications {
+  position: fixed;
+  z-index: 100;
+  top: 60px;
+  right: 24px;
+  .notification {
+    width: 280px;
+    margin-bottom: 24px;
+    background-color: #263238;
+    border-radius: 3px;
+    max-height: 0;
+    overflow: hidden;
+    .transition(max-height .4s linear);
+    &.show {
+      max-height: 300px;
+    }
+    & > div {
+      color: #fff;
+      padding: 14px;
+    }
+    &.error > div {
+        color: #FF8A80;
+    }
+  }
+}
+
 #page {
   margin: 0 7.14286%;
   padding: 72px 0;
@@ -497,6 +523,13 @@ section {
       }
       label {
         margin-left: 4px;
+      }
+    }
+    .phone {
+      display: flex;
+      span {
+        line-height: 40px;
+        margin-right: 4px;
       }
     }
     .logo {

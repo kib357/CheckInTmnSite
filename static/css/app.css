@@ -484,6 +484,33 @@ section.text-left p {
   font-size: 2.3em;
   font-weight: 400;
 }
+#notifications {
+  position: fixed;
+  z-index: 100;
+  top: 60px;
+  right: 24px;
+}
+#notifications .notification {
+  width: 280px;
+  margin-bottom: 24px;
+  background-color: #263238;
+  border-radius: 3px;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.4s linear;
+  -o-transition: max-height 0.4s linear;
+  transition: max-height 0.4s linear;
+}
+#notifications .notification.show {
+  max-height: 300px;
+}
+#notifications .notification > div {
+  color: #fff;
+  padding: 14px;
+}
+#notifications .notification.error > div {
+  color: #FF8A80;
+}
 #page {
   margin: 0 7.14286%;
   padding: 72px 0;
@@ -859,6 +886,13 @@ section.text-left p {
 }
 #pricing .order-form-container .payment-type label {
   margin-left: 4px;
+}
+#pricing .order-form-container .phone {
+  display: flex;
+}
+#pricing .order-form-container .phone span {
+  line-height: 40px;
+  margin-right: 4px;
 }
 #pricing .order-form-container .logo {
   margin: 24px 0;

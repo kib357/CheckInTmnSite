@@ -1,5 +1,7 @@
 {{ partial "header.html" . }}
 
+    <div id="notifications"></div>
+
     <section id="top">
         <!--<img class="logo" alt="logo-full" src="/img/logo-full.svg"></logo>-->
         <div class="top-content">
@@ -166,11 +168,14 @@
                     <label for="order-name">Ваше имя *</label>
                     <input type="text" id="order-name" name="name" required>
                     <label for="order-phone">Номер телефона *</label>
-                    <input type="tel" id="order-phone" name="phone" pattern="^(\+7)?[()\s\-0-9]{10,}" required>
+                    <div class="phone">
+                        <span>+7</span>
+                        <input type="tel" id="order-phone" name="phone" pattern="^[()\s\-0-9]{10,}" required>
+                    </div>
                     <label for="order-email">Адрес e-mail</label>
                     <input type="text" id="order-email" name="email" pattern="^\S+@\S+\.\S{1,3}$">
                     <label for="order-message">Комментарий</label>
-                    <textarea id="order-message" name="comment" rows="3"></textarea>
+                    <textarea id="order-message" name="comment" rows="3" maxlength="1000"></textarea>
                     <label>Оплата</label>
                     <div class="payment-type">
                     <input type="radio" id="payment-online" name="paymentType" value="online" checked>

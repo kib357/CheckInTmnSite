@@ -234,9 +234,9 @@ function initPrice() {
         paymentInputs = document.getElementsByName("paymentType"),
         orderSuccess = document.querySelector(".order-success");
 
-    var product, amount;
+    var option, product, amount;
 
-    next.addEventListener("click", changePriceItem);
+    next.addEventListener("click", changePriceItem.bind(this, false));
     prev.addEventListener("click", changePriceItem.bind(this, true));
 
     for (var i = 0; i < orderButtons.length; i++) {
@@ -257,10 +257,11 @@ function initPrice() {
             var item = priceItems[i];
             if (item.classList.contains("active")) {
                 item.classList.remove("active");
+                var nextIndex;
                 if (prev) {
-                    var nextIndex = (i - 1) < 0 ? priceItems.length - 1 : i - 1;
+                    nextIndex = (i - 1) < 0 ? priceItems.length - 1 : i - 1;
                 } else {
-                    var nextIndex = (i + 1) >= priceItems.length ? 0 : i + 1;
+                    nextIndex = (i + 1) >= priceItems.length ? 0 : i + 1;
                 }
                 priceItems[nextIndex].classList.add("active");
                 return;
@@ -269,11 +270,12 @@ function initPrice() {
         priceItems[0].classList.add("active");
     }
 
-    function preOrder(option) {
-        alert("Опция заказа с сайта пока не доступна");
-        return;
+    function preOrder(_option) {
+        // alert("Опция заказа с сайта пока не доступна");
+        // return;
         price.classList.add("hidden");
         orderFormContainer.classList.add("show");
+        option = _option;
         document.getElementById("order-product").innerHTML = products[option];
         product = products[option];
         amount = amounts[option];
@@ -303,11 +305,16 @@ function initPrice() {
         if (orderForm.checkValidity()) {
             e.preventDefault();
             var formData = parseForm(orderForm); // new FormData(orderForm);
+            if (formData.paymentType === "online") {
+                return showNotification("Оплата банковской картой пока не принимается. Просим прощения за неудобства.");
+            }
+            formData.product = option + "";
             formSubmit.setAttribute("disabled", true);
             sendOrder(formData, function (err, orderId) {
                 formSubmit.removeAttribute("disabled");
-                if (err) {
-                    alert(orderErrorText);
+                console.log("Err", err);
+                if (err != null) {
+                    showNotification(orderErrorText, true);
                 } else {
                     document.getElementById("pricing").scrollIntoView();
                     orderFormContainer.classList.remove("show");
@@ -442,27 +449,31 @@ function sendOrder(data, cb) {
                     cb(500, null);
                     return;
                 }
-                if (res.error) {
-                    console.error("Order error:", res);
-                    cb(500, null);
-                } else {
-                    cb(null, res.result.orderId);
-                }
+                cb(null, res);
             } else {
                 cb(xhr.status, null);
             }
         }
     });
 
-    xhr.open('POST', 'https://api.scorocode.ru/api/v1/data/insert');
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    var req = {
-        app: "715d629ff982dcfd675a4178dffcf95f", // идентификатор приложения, обязательный
-        cli: "6687195956739e633852cacfce708beb", // клиентский ключ, обязательный
-        // acc: "", // ключ доступа, необязательный, для полного доступа masterKey
-        // sess: "", // ID сессии, обязательный, если ACLPublic приложения на операцию == false и acc != masterKey
-        coll: "orders", // имя коллекции, обязательный
-        doc: data, // документ с парами имя_поля:значение, необязательный
-    }
-    xhr.send(JSON.stringify(req));
+    xhr.open('POST', 'http://api.checkintmn.ru/hooks/orders/make-order');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("data=" + JSON.stringify(data));
+}
+
+function showNotification(text, error) {
+    var container = document.getElementById("notifications");
+    var n = document.createElement("div");
+    n.className = "notification" + (error ? " error" : "");
+    n.innerHTML = "<div>" + text + "</div>";
+    container.appendChild(n);
+    setTimeout(function () {
+        n.classList.add("show");
+        setTimeout(function () {
+            n.classList.remove("show");
+            setTimeout(function () {
+                container.removeChild(n);
+            }, 400);
+        }, 5000);
+    }, 100);
 }
