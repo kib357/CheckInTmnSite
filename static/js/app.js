@@ -17,7 +17,7 @@ var tinkoffWidget = new TinkoffWidget();
 //Функция отображения платежной формы
 function makePaymentWithWidget(amount, orderId, description) {
     var params = {
-        terminalKey: "checkintmn", //Код терминала (обязательный параметр), выдается банком.
+        terminalKey: "checkintmnDEMO", //Код терминала (обязательный параметр), выдается банком.
         amount: amount, //Сумма заказа в копейках (обязательный параметр)
         orderId: orderId, //Номер заказа (если не передан, принудительно устанавливается timestamp)
         description: description, //Описание заказа (не обязательный параметр)
@@ -325,10 +325,10 @@ function initPrice() {
                         document.getElementById("order-close").setAttribute("disabled", true);
                         var s = 6;
                         var interval = setInterval(function () {
+                            s--;
                             if (s > 0) {
-                                s--;
                                 orderSuccess.children[2].innerHTML = waitPaymentFormText.replace("{{s}}", s);
-                                if (s < 2) {
+                                if (s === 1) {
                                     makePaymentWithWidget(amount, orderId, "- " + product);
                                 }
                             } else {
