@@ -323,7 +323,7 @@ function initPrice() {
                     orderSuccess.children[1].innerHTML = "<p><b>" + product + "</b></p>";
                     if (formData.paymentType === "online") {
                         document.getElementById("order-close").setAttribute("disabled", true);
-                        var s = 10;
+                        var s = 6;
                         var interval = setInterval(function () {
                             if (s > 0) {
                                 s--;
