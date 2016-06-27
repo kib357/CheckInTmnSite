@@ -17,7 +17,7 @@ var tinkoffWidget = new TinkoffWidget();
 //Функция отображения платежной формы
 function makePaymentWithWidget(amount, orderId, description) {
     var params = {
-        terminalKey: "TestB", //Код терминала (обязательный параметр), выдается банком.
+        terminalKey: "checkintmn", //Код терминала (обязательный параметр), выдается банком.
         amount: amount, //Сумма заказа в копейках (обязательный параметр)
         orderId: orderId, //Номер заказа (если не передан, принудительно устанавливается timestamp)
         description: description, //Описание заказа (не обязательный параметр)
@@ -305,9 +305,9 @@ function initPrice() {
         if (orderForm.checkValidity()) {
             e.preventDefault();
             var formData = parseForm(orderForm); // new FormData(orderForm);
-            if (formData.paymentType === "online") {
-                return showNotification("Оплата банковской картой пока не принимается. Просим прощения за неудобства.");
-            }
+            // if (formData.paymentType === "online") {
+            //     return showNotification("Оплата банковской картой пока не принимается. Просим прощения за неудобства.");
+            // }
             formData.product = option + "";
             formSubmit.setAttribute("disabled", true);
             sendOrder(formData, function (err, orderId) {
@@ -322,6 +322,7 @@ function initPrice() {
                     orderSuccess.children[0].innerHTML = acceptedText.replace("{{orderId}}", orderId);
                     orderSuccess.children[1].innerHTML = "<p><b>" + product + "</b></p>";
                     if (formData.paymentType === "online") {
+                        document.getElementById("order-close").setAttribute("disabled", true);
                         var s = 10;
                         var interval = setInterval(function () {
                             if (s > 0) {
@@ -332,6 +333,7 @@ function initPrice() {
                                 }
                             } else {
                                 clearInterval(interval);
+                                document.getElementById("order-close").removeAttribute("disabled");
                                 orderSuccess.children[2].innerHTML = successText;
                             }
                         }, 1000);
