@@ -1,4 +1,4 @@
-baseurl = "http://checkintmn.ru/"
+baseurl = "https://checkintmn.ru/"
 languageCode = "ru-RU"
 title = "Фотопрогулки по Тюмени - Check in TMN"
 
