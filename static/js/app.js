@@ -459,6 +459,7 @@ function sendOrder(data, cb) {
     });
 
     xhr.open('POST', 'https://api.checkintmn.ru/hooks/orders/make-order');
+
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("data=" + JSON.stringify(data));
 }
