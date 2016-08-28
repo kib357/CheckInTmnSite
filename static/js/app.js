@@ -17,7 +17,7 @@ var tinkoffWidget = new TinkoffWidget();
 //Функция отображения платежной формы
 function makePaymentWithWidget(amount, orderId, description) {
     var params = {
-        terminalKey: "checkintmnDEMO", //Код терминала (обязательный параметр), выдается банком.
+        terminalKey: "checkintmn", //Код терминала (обязательный параметр), выдается банком.
         amount: amount, //Сумма заказа в копейках (обязательный параметр)
         orderId: orderId, //Номер заказа (если не передан, принудительно устанавливается timestamp)
         description: description, //Описание заказа (не обязательный параметр)
